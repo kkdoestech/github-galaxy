@@ -1,0 +1,22 @@
+[
+ {
+  "login": "gaearon",
+  "people": 668,
+  "clusters": 3
+ },
+ {
+  "login": "sindresorhus",
+  "people": 328,
+  "clusters": 6
+ },
+ {
+  "login": "mitsuhiko",
+  "people": 282,
+  "clusters": 3
+ },
+ {
+  "login": "antfu",
+  "people": 752,
+  "clusters": 5
+ }
+]

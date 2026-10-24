@@ -1,0 +1,643 @@
+/* Ayu Dark Bordered (values from the ayu 9.1 palette), laid out like a plain portal page. */
+:root {
+  --bg: #0d1017; /* ayu ui.bg */
+  --head: #141821; /* ayu ui.panel.bg: box title strips */
+  --row: #161a24; /* ayu editor.line: hover rows */
+  --pick: rgba(71, 82, 102, 0.35); /* ayu ui.selection: the active row */
+  --line: #1b1f29; /* ayu ui.line: every border */
+  --line-strong: #2a303c;
+  --text: #bfbdb6; /* ayu editor.fg */
+  --muted: #8a9199; /* ayu ui.fg, lightened so small text stays readable */
+  --accent: #e6b450; /* ayu accent: focus, main button, selection only */
+  --on-accent: #0d1017;
+  --link: #59c2ff; /* ayu entity */
+  --error: #d95757;
+  --radius: 3px;
+  --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font: 14px/1.5 var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+.link {
+  color: var(--link);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover,
+.link:hover {
+  text-decoration: underline;
+}
+
+button.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+}
+
+h2,
+h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 8px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 13px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---- controls -------------------------------------------------------------------- */
+
+input,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"],
+select {
+  height: 32px;
+  padding: 0 8px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+input::placeholder {
+  color: var(--muted);
+}
+
+button:not(.link, .bare) {
+  height: 32px;
+  padding: 0 12px;
+  background: var(--head);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+button:not(.link, .bare):hover {
+  background: var(--row);
+}
+
+button:disabled,
+select:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+button.primary:hover {
+  background: #f0c060;
+}
+
+label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.stepper {
+  display: inline-flex;
+}
+
+.stepper input {
+  width: 64px;
+  text-align: center;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.stepper input::-webkit-inner-spin-button,
+.stepper input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.stepper button:not(.link, .bare) {
+  width: 32px;
+  padding: 0;
+}
+
+.stepper button:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.stepper button:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ---- page frame ------------------------------------------------------------------ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 560px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.search input[type="search"] {
+  width: 220px;
+}
+
+.search-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status {
+  position: relative;
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--line);
+  min-height: 34px;
+  color: var(--muted);
+}
+
+.status strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.status-error {
+  color: var(--error);
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--line);
+}
+
+.progress > div {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s ease-out;
+}
+
+.cols {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 300px;
+  min-height: 0;
+}
+
+.col {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.left {
+  border-right: 1px solid var(--line);
+}
+
+.right {
+  border-left: 1px solid var(--line);
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 7px 14px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.foot .sep {
+  color: var(--line-strong);
+  margin: 0 6px;
+}
+
+/* ---- boxes (Yahoo-style: a title strip, then content) ---------------------------- */
+
+.box {
+  border-bottom: 1px solid var(--line);
+}
+
+.box-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--head);
+  border-bottom: 1px solid var(--line);
+  font-weight: 600;
+}
+
+.box-head .muted {
+  font-weight: 400;
+}
+
+.box-body {
+  padding: 10px 12px;
+}
+
+.box-body > :last-child {
+  margin-bottom: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+
+/* ---- cluster list ---------------------------------------------------------------- */
+
+.clusters {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.clusters li {
+  border-bottom: 1px solid var(--line);
+}
+
+.clusters li:last-child {
+  border-bottom: 0;
+}
+
+.cluster-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 12px 2px;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.clusters li:hover {
+  background: var(--row);
+}
+
+.clusters li.active {
+  background: var(--pick);
+}
+
+.swatch {
+  display: inline-block;
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+
+.cluster-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cluster-size {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cluster-members {
+  padding: 0 12px 6px 30px;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---- center: toolbar + canvas ---------------------------------------------------- */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbar form {
+  display: flex;
+  gap: 6px;
+}
+
+.toolbar input[type="search"] {
+  width: 230px;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.galaxy-canvas {
+  display: block;
+  touch-action: none;
+}
+
+.empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.empty > * {
+  pointer-events: auto;
+}
+
+.galaxy-tooltip,
+.galaxy-label {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.galaxy-tooltip {
+  max-width: 260px;
+  padding: 5px 8px;
+  background: var(--head);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.galaxy-tooltip-sub {
+  color: var(--muted);
+}
+
+.galaxy-label {
+  left: 0;
+  top: 0;
+  font-size: 13px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.galaxy-label-seed {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---- right column ---------------------------------------------------------------- */
+
+.user-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.user-top img {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--head);
+}
+
+.user-name {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  margin: 0 0 10px;
+}
+
+.facts dt {
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.repos {
+  list-style: none;
+  margin: 4px 0 10px;
+  padding: 0;
+}
+
+.repos li {
+  padding: 2px 0;
+  overflow-wrap: anywhere;
+}
+
+.sub-head {
+  margin: 0 0 2px;
+  font-weight: 600;
+}
+
+/* ---- eigenvalue chart ------------------------------------------------------------ */
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2px 0 4px;
+  overflow: visible;
+}
+
+.chart text {
+  fill: var(--muted);
+  font-size: 12px;
+  font-family: var(--font);
+}
+
+.chart-readout {
+  min-height: 20px;
+  font-size: 13px;
+}
+
+details summary {
+  cursor: pointer;
+  color: var(--link);
+  font-size: 13px;
+}
+
+.values {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.values th,
+.values td {
+  padding: 2px 6px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+}
+
+.values th:first-child,
+.values td:first-child {
+  text-align: left;
+}
+
+/* ---- small screens --------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .app {
+    height: auto;
+  }
+
+  .cols {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .center {
+    order: -1;
+    height: 62vh;
+    min-height: 360px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .left,
+  .right {
+    border: 0;
+    overflow: visible;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .search input[type="search"] {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .toolbar input[type="search"] {
+    width: 100%;
+    flex: 1;
+  }
+
+  .toolbar form {
+    flex: 1 1 100%;
+  }
+}

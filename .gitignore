@@ -1,0 +1,23 @@
+# secrets and local data
+.env
+.cache/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# node
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+*.tsbuildinfo
+
+# editors / os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
