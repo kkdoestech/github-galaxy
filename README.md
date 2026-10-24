@@ -5,7 +5,8 @@ follow and who follows them, two or three hops out. It groups developers who wor
 using spectral clustering on the graph Laplacian, then draws everyone as stars you can
 rotate, zoom and drag.
 
-[Tiếng Việt](README.vi.md)
+**[Live demo](https://kkdoestech.github.io/github-galaxy/)** (sample galaxies; run it
+locally to build any user) · [Tiếng Việt](README.vi.md)
 
 ![GitHub Galaxy showing antfu's network with sindresorhus selected](docs/screenshot.png)
 

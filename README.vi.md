@@ -5,7 +5,8 @@ lấy danh sách người họ follow và người follow họ, mở rộng ra b
 những developer hay làm việc chung bằng spectral clustering trên ma trận Laplace, rồi vẽ mỗi
 người thành một ngôi sao để bạn xoay, zoom và kéo thả.
 
-[English](README.md)
+**[Bản demo](https://kkdoestech.github.io/github-galaxy/)** (các thiên hà mẫu; chạy trên máy
+để tạo cho bất kỳ ai) · [English](README.md)
 
 ![GitHub Galaxy](docs/screenshot.png)
 
